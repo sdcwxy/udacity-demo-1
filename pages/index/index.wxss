@@ -1,8 +1,27 @@
 /**index.wxss**/
+image {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0rpx;
+  left: 0rpx;
+  z-index: -1
+}
+
+.temp-box {
+  position: relative;
+  padding-top: 170rpx;
+  padding-bottom: 250rpx;
+}
 
 .temp {
   font-size: 200rpx;
   line-height: 280rpx;
   text-align: center;
-  margin-top: 300rpx;
+}
+
+.describe {
+  text-align: center;
+  font-size: 40rpx;
+  line-height: 56rpx;
 }
