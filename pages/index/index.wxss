@@ -1,0 +1,8 @@
+/**index.wxss**/
+
+.temp {
+  font-size: 200rpx;
+  line-height: 280rpx;
+  text-align: center;
+  margin-top: 300rpx;
+}
