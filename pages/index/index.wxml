@@ -1,6 +1,6 @@
 <!--index.wxml-->
 <view class='temp-box'>
-  <image src="/img/sunny-bg.png" mode="scaleToFill"></image>
+  <image src='{{weather_img}}' mode="scaleToFill"></image>
   <view class="temp">{{temp}}</view>
   <view class='describe'>{{weather}}</view>
 </view>

@@ -3,12 +3,12 @@
     "pages/index/index"
   ],
   "window": {
-    "navigationBarBackgroundColor": "#cbeefd",
+    "navigationBarBackgroundColor": "#fff",
     "navigationBarTextStyle": "black",
     "navigationBarTitleText": "小程序",
     "backgroundColor": "#eeeeee",
     "backgroundTextStyle": "light",
-    "enablePullDownRefresh": false
+    "enablePullDownRefresh": true
   },
   "sitemapLocation": "sitemap.json"
 }
