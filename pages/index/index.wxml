@@ -1,6 +1,19 @@
 <!--index.wxml-->
 <view class='temp-box'>
-  <image src='{{weather_img}}' mode="scaleToFill"></image>
+  <image class='temp-bgp' src='{{weather_img}}' mode="scaleToFill"></image>
   <view class="temp">{{temp}}</view>
   <view class='describe'>{{weather}}</view>
 </view>
+<view class='predict-temp'>
+  <image class='predict-weather' src='/img/time-icon.png'></image>
+  <view class='predict-title'>未来24小时天气预测</view>
+</view>
+<scroll-view scroll-x>
+  <view class='forecast-list'>
+    <view class="forecast-item" wx:for="{{predict}}">
+      <view class='forecast-time'>{{item}}</view>
+      <image class='forcase-sign' src='/img/sunny-icon.png'></image>
+      <view class='forecast-temp'>{{item}}</view>
+    </view>
+  </view>
+</scroll-view>

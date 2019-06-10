@@ -22,6 +22,7 @@ Page({
     temp: '',
     weather: '',
     weather_img: '',
+    predict : [1, 2, 3, 4, 5, 6, 7, 8, 9]
   },
   onLoad() {
     console.log('Hello World!')
