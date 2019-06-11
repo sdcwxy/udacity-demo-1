@@ -26,6 +26,32 @@
   line-height: 56rpx;
 }
 
+.detail {
+  position: absolute;
+  display: flex;
+  align-items: center; 
+  bottom: 0;
+  left: 40rpx;
+  right: 40rpx;
+  height: 90rpx;
+  font-size: 30rpx;
+  line-height: 42rpx;
+}
+
+.detail-today {
+}
+
+.detail-temp {
+  flex-grow: 1;
+  text-align: right;
+  padding-right: 30rpx;
+}
+
+.detail-arrow {
+  height: 24rpx;
+  width: 16rpx;
+}
+
 .predict-temp {
   display: flex;
   align-items: center;

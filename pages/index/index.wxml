@@ -3,6 +3,11 @@
   <image class='temp-bgp' src='{{weather_img}}' mode="scaleToFill"></image>
   <view class="temp">{{temp}}</view>
   <view class='describe'>{{weather}}</view>
+  <view class='detail' bindtap="onDetailTap">
+    <view class='detail-today'>{{todayTime}}</view>
+    <view class='detail-temp'>{{todayTemp}}</view>
+    <image class='detail-arrow' src='/img/arrow.png'></image>
+  </view>
 </view>
 <view class='predict-temp'>
   <image class='predict-weather' src='/img/time-icon.png'></image>
@@ -11,9 +16,9 @@
 <scroll-view scroll-x>
   <view class='forecast-list'>
     <view class="forecast-item" wx:for="{{predict}}">
-      <view class='forecast-time'>{{item}}</view>
-      <image class='forcase-sign' src='/img/sunny-icon.png'></image>
-      <view class='forecast-temp'>{{item}}</view>
+      <view class='forecast-time'>{{item.time}}</view>
+      <image class='forcase-sign' src='{{item.icon}}'></image>
+      <view class='forecast-temp'>{{item.temp}}</view>
     </view>
   </view>
 </scroll-view>

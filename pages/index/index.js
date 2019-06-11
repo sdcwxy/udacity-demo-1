@@ -22,7 +22,9 @@ Page({
     temp: '',
     weather: '',
     weather_img: '',
-    predict : [1, 2, 3, 4, 5, 6, 7, 8, 9]
+    predict : [],
+    todayTemp: "",
+    todayTime: "",
   },
   onLoad() {
     console.log('Hello World!')
@@ -46,22 +48,56 @@ Page({
       },
       success: res => {
         let result = res.data.result
-        let temp = result.now.temp
-        let weather = result.now.weather
-        this.setData({
-          temp: temp + '°',
-          weather: map[weather],
-          weather_img: "/img/" + weather + "-bg.png",
-        })
-        wx.setNavigationBarColor({
-          frontColor: '#000000',
-          backgroundColor: weatherColorMap[weather],
-        })
+        this.setNow(result)
+        this.setToday(result)
+        this.setPredict(result)
       },
       complete: ()=> {
         console.log(callback)
         callback && callback()
       }
+    })
+  },
+  setNow(result){
+    let temp = result.now.temp
+    let weather = result.now.weather
+    this.setData({
+      temp: temp + '°',
+      weather: map[weather],
+      weather_img: "/img/" + weather + "-bg.png",
+    })
+    wx.setNavigationBarColor({
+      frontColor: '#000000',
+      backgroundColor: weatherColorMap[weather],
+    })
+  },
+  setPredict(result){
+    let forecast = result.forecast
+    let nowHour = new Date().getHours()
+    let predict = []
+    for (let i = 0; i < 8; i++) {
+      predict.push({
+        time: (i * 3 + nowHour) % 24 + "时",
+        icon: '/img/' + forecast[i].weather + '-icon.png',
+        temp: forecast[i].temp + '°',
+      })
+    }
+    predict[0].time = "现在"
+    this.setData({
+      predict: predict
+    })
+  },
+  setToday(result) {
+    let date = new Date()
+    let temp = result.today
+    this.setData({
+      todayTemp: temp.maxTemp + '° - ' + temp.minTemp + '°',
+      todayTime: date.getFullYear()+ ' - ' + (date.getMonth() + 1) + ' - ' + date.getDate()+ " 今天"
+    })
+  },
+  onDetailTap() {
+    wx.navigateTo({
+      url: '/pages/list/list',
     })
   }
 })
