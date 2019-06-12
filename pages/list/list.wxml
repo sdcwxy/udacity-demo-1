@@ -1,1 +1,8 @@
-<view>hello world</view>
+<view class="day" wx:for="{{dailyWeather}}">
+    <view class='day-time'>
+      <view class='day-weekday'>{{item.day}}</view>
+      <view class='day-date'>{{item.date}}</view>
+    </view>
+    <view class='day-temp'>{{item.temp}}</view>
+    <image class='day-icon' src='{{item.icon}}'></image>
+  </view>

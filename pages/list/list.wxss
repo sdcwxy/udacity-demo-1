@@ -1,0 +1,29 @@
+.day {
+  display: flex;
+  align-items: center;
+  height: 150rpx;
+  margin: 0 40rpx;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.day-weekday {
+  font-size: 40rpx;
+  line-height: 56rpx;
+}
+.day-date {
+  font-size: 40rpx;
+  line-height: 56rpx;
+}
+
+.day-temp {
+  flex-grow: 1;
+  padding-right: 60rpx;
+  text-align: center;
+  font-size: 40rpx;
+  line-height: 56rpx;
+}
+
+.day-icon {
+  height: 90rpx;
+  width: 90rpx;
+}
