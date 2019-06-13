@@ -25,7 +25,8 @@
 
 .location-tips {
   margin-top: 10rpx;
-  text-align: center
+  text-align: center;
+  height: 42rpx;
 }
 
 .temp-bgp {

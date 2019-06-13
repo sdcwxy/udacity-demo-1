@@ -1,11 +1,11 @@
 <!--index.wxml-->
 <view class='temp-box'>
-  <view class='location-box'>
+  <view class='location-box'bindtap="onTapLocation">
     <view class='location'>
       <image class='location-icon' src='/img/location-icon.png'></image>
-      <view class='location-city'>dalian</view>
+      <view class='location-city'>{{city}}</view>
     </view>
-    <view class='location-tips'> tips tips</view>
+    <view class='location-tips'>{{tip}}</view>
   </view>
   <image class='temp-bgp' src='{{weather_img}}' mode="scaleToFill"></image>
   <view class="temp">{{temp}}</view>
