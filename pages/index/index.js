@@ -17,6 +17,10 @@ const weatherColorMap = {
   'snow': '#aae1fc'
 }
 const QQMapWX = require('../../libs/qqmap-wx-jssdk.js')
+const UNPROMPTED = 0
+const UNAUTHORIZED = 1
+const AUTHORIZED = 2
+
 
 Page({
   data: {
@@ -28,13 +32,28 @@ Page({
     todayTime: "",
     city: '广州市',
     tip: '点击获取当前位置',
+    locationAuthType: UNPROMPTED
   },
   onLoad() {
-    console.log('Hello World!')
     this.qqmapsdk = new QQMapWX({
       key: '申请的key'
     })
-    this.getNow()
+    wx.getSetting({
+      success: res=>{
+        let auth = res.authSetting['scope.userLocation']
+        this.setData({
+          locationAuthType: auth ? AUTHORIZED
+            : (auth === false) ? UNAUTHORIZED : UNPROMPTED
+        })
+        if (auth)
+          this.getLocation()
+        else
+          this.getNow()
+      },
+      fail: res=>{
+        this.getNow()
+      }
+    })
   },
   onPullDownRefresh() {
     console.log('refresh')
@@ -107,10 +126,25 @@ Page({
     })
   },
   onTapLocation() {
-    console.log('tapped')
+    if (this.data.locationAuthType === UNAUTHORIZED)
+      wx.openSetting({
+        success: res=> {
+          console.log(res)
+          if (res.authSetting['scope.userLocation']){
+            this.getLocation()
+          }
+        }
+      })
+    else
+      this.getLocation()
+  },
+  getLocation() {
     wx.getLocation({
       type: 'gcj02',
       success: res => {
+        this.setData({
+          locationAuthType: AUTHORIZED,
+        })
         console.log(res.latitude, res.longitude)
         this.qqmapsdk.reverseGeocoder({
           location: {
@@ -121,11 +155,15 @@ Page({
             let city = res.result.address_component.city
             console.log(city)
             this.setData({
-              city : city,
-              tip: '',
+              city: city,
             })
             this.getNow()
           }
+        })
+      },
+      fail: res => {
+        this.setData({
+          locationAuthType: UNAUTHORIZED,
         })
       }
     })

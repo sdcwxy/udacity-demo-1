@@ -1,11 +1,13 @@
 <!--index.wxml-->
 <view class='temp-box'>
-  <view class='location-box'bindtap="onTapLocation">
+  <view class='location-box' open-type='getUserInfo' bindtap="onTapLocation">
     <view class='location'>
       <image class='location-icon' src='/img/location-icon.png'></image>
       <view class='location-city'>{{city}}</view>
     </view>
-    <view class='location-tips'>{{tip}}</view>
+    <view wx:if="{{locationAuthType==0}}"class="location-tips">点击获取当前位置</view>
+    <view wx:if="{{locationAuthType==1}}"class="location-tips">点击开启位置权限</view>
+    <view wx:if="{{locationAuthType==2}}"class="location-tips"></view>
   </view>
   <image class='temp-bgp' src='{{weather_img}}' mode="scaleToFill"></image>
   <view class="temp">{{temp}}</view>
